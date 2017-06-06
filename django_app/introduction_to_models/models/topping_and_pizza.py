@@ -16,7 +16,18 @@ class Pizza(models.Model):
     toppings = models.ManyToManyField(Topping)
 
     def __str__(self):
-        return self.name
+        # 자신이 가지고있는 토핑목록을 뒤에 출력
+        # result_string = ''
+        # for topping in self.toppings.all():
+        #     result_string += topping.name
+        #     result_string += ', '
+        #
+        # result_string = result_string[:-2]
+        # return '{} {}'.format(
+        #     self.name,
+        #     result_string
+        # )
+        return '{} ({})'.format(self.name, ', '.join([t.name for t in self.toppings.all()]))
 
     class Meta:
         ordering = ('name',)
